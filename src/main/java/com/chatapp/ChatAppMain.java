@@ -24,55 +24,53 @@ public class ChatAppMain {
         chatApp.addObserver(loggerObserver);
         System.out.println("Active observers: " + chatApp.getObserverCount());
 
-        // Abstract Factory + Adapter Pattern - XMPP Protocol
         System.out.println("\n--- Connecting via XMPP (Abstract Factory + Adapter) ---");
         ProtocolFactory xmppFactory = ProtocolFactoryProducer.getFactory("XMPP", "xmpp.example.com", "5222");
         chatApp.connectToProtocol(xmppFactory);
 
-        // Decorator Pattern - Message enhancements
         System.out.println("\n--- Enabling Decorators ---");
-        chatApp.enableEncryption("secure-chat-key-2024");
+        chatApp.enableEncryption("secure-chat-key-2025");
         chatApp.enableLogging();
 
-        // Builder + Factory Method Patterns - Message creation
+        // Message creation
         System.out.println("\n--- Sending Messages (Builder + Factory Method) ---");
         chatApp.sendMessage("Alice", "Bob", "Hello Bob! This message is encrypted and logged.");
         chatApp.sendMessage("Bob", "Alice", "Hi Alice! The decorators are working perfectly!");
 
-        // DEMONSTRATE removeObserver - Bob leaves the chat
+        // Bob leaves the chat
         System.out.println("\n--- Demonstrating removeObserver ---");
         System.out.println("Bob is leaving the chat...");
         chatApp.removeObserver(bobObserver);
         System.out.println("Active observers after Bob left: " + chatApp.getObserverCount());
 
-        // Send more messages - Bob won't receive these
+        // Bob won't receive these
         chatApp.sendMessage("Alice", "Bob", "Are you still there, Bob?");
         chatApp.sendMessage("Charlie", "ALL", "Hello everyone!");
 
-        // Adapter Pattern - Receiving messages
+        // Receiving messages
         System.out.println("\n--- Receiving Messages (Adapter Pattern) ---");
         chatApp.receiveMessages("Alice");
 
-        // Abstract Factory + Adapter Pattern - Switch to REST
+        // Switch to REST
         System.out.println("\n--- Switching to REST (Abstract Factory + Adapter) ---");
         ProtocolFactory restFactory = ProtocolFactoryProducer.getFactory("REST", "https://api.chat.com", "rest-api-key-123");
         chatApp.connectToProtocol(restFactory);
 
-        // Remove logging observer to demonstrate dynamic observer management
+        // Remove logging observer
         System.out.println("\n--- Removing Logging Observer ---");
         chatApp.removeObserver(loggerObserver);
         System.out.println("Active observers after removing logger: " + chatApp.getObserverCount());
 
         chatApp.sendMessage("Alice", "ALL", "This message won't be logged to file");
 
-        // Add Bob back to demonstrate dynamic observer addition
+        // Add Bob back
         System.out.println("\n--- Bob rejoins the chat ---");
         chatApp.addObserver(bobObserver);
         System.out.println("Active observers after Bob rejoined: " + chatApp.getObserverCount());
 
         chatApp.sendMessage("Bob", "Alice", "I'm back! Got all the messages I missed?");
 
-        // Visitor Pattern - Message analysis
+        // Message analysis
         System.out.println("\n--- Analyzing Messages (Visitor Pattern) ---");
         MessageStatisticsVisitor statsVisitor = new MessageStatisticsVisitor();
         chatApp.generateReport(statsVisitor);
@@ -82,14 +80,14 @@ public class ChatAppMain {
 
         // Final Summary
         System.out.println("\n=== Design Patterns Summary ===");
-        System.out.println("✓ BUILDER: Complex message construction");
-        System.out.println("✓ FACTORY METHOD: Flexible message creation");
-        System.out.println("✓ ABSTRACT FACTORY: Cross-protocol families");
-        System.out.println("✓ ADAPTER: XMPP/REST protocol compatibility");
-        System.out.println("✓ DECORATOR: Encryption, logging, timestamps");
-        System.out.println("✓ OBSERVER: Real-time message notifications with dynamic management");
-        System.out.println("✓ VISITOR: Message analysis and reporting");
-        System.out.println("✓ FACADE: Simplified chat application interface");
+        System.out.println("+ BUILDER: Complex message construction");
+        System.out.println("+ FACTORY METHOD: Flexible message creation");
+        System.out.println("+ ABSTRACT FACTORY: Cross-protocol families");
+        System.out.println("+ ADAPTER: XMPP/REST protocol compatibility");
+        System.out.println("+ DECORATOR: Encryption, logging, timestamps");
+        System.out.println("+ OBSERVER: Real-time message notifications with dynamic management");
+        System.out.println("+ VISITOR: Message analysis and reporting");
+        System.out.println("+ FACADE: Simplified chat application interface");
 
         System.out.println("\nApplication Statistics:");
         System.out.println("• Messages processed: " + chatApp.getMessageCount());
@@ -98,7 +96,6 @@ public class ChatAppMain {
         System.out.println("• Features: Encryption, Logging, Timestamps");
         System.out.println("• Observer management: addObserver/removeObserver demonstrated");
 
-        System.out.println("\n🎉 All 8 design patterns implemented successfully!");
-        System.out.println("Observer pattern fully demonstrated with dynamic observer management!");
+        System.out.println("\n=== All 8 design patterns implemented successfully! ===");
     }
 }
